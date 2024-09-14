@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=12 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Texture2D" uid="uid://dmu5erj8f6i60" path="res://hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_lpqvw"]
 [ext_resource type="Texture2D" uid="uid://du2dk8msc0frm" path="res://grids/Dark/texture_07.png" id="2_j352d"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
+[ext_resource type="Resource" path="res://HTerrain/data.hterrain" id="4_ymp3o"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_63j70"]
 panorama = ExtResource("1_lpqvw")
@@ -20,6 +23,11 @@ glow_enabled = true
 albedo_texture = ExtResource("2_j352d")
 uv1_triplanar = true
 
+[sub_resource type="Resource" id="Resource_ynhfn"]
+script = ExtResource("5_58vx7")
+mode = 0
+textures = [[], []]
+
 [node name="World" type="Node3D"]
 
 [node name="Env" type="Node3D" parent="."]
@@ -34,10 +42,28 @@ shadow_enabled = true
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 use_collision = true
-size = Vector3(40, 1, 40)
+size = Vector3(200, 1, 200)
 material = SubResource("StandardMaterial3D_jf67n")
+
+[node name="HTerrain" type="Node3D" parent="Stage"]
+script = ExtResource("3_ledq5")
+_terrain_data = ExtResource("4_ymp3o")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_ynhfn")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
 
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16915, 0.761609, -0.225597)
