@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=9 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
@@ -7,15 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
 [ext_resource type="Texture2D" uid="uid://d2fuv6kv6tgv8" path="res://Ground/slot0_normal_roughness.png" id="6_00ia3"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3l8r"]
-
-[sub_resource type="Sky" id="Sky_ayn7x"]
-sky_material = SubResource("ProceduralSkyMaterial_i3l8r")
-radiance_size = 2
-
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 2
-sky = SubResource("Sky_ayn7x")
 
 [sub_resource type="Resource" id="Resource_avr48"]
 script = ExtResource("5_58vx7")
@@ -30,7 +23,7 @@ textures = [[ExtResource("5_lkvfm")], [ExtResource("6_00ia3")]]
 environment = SubResource("Environment_gi00v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, -0.317224, 0.862318, 0.394685, -0.386483, 0.262501, -0.884152, 4.75979, 7.15297, -17.7329)
+transform = Transform3D(-0.866025, -0.433013, 0.25, -0.317224, 0.862318, 0.394685, -0.386483, 0.262501, -0.884152, 4.75979, 3.24292, -17.7329)
 shadow_enabled = true
 
 [node name="Stage" type="Node3D" parent="."]
@@ -54,67 +47,5 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = Vector4(1, 1, 1, 1)
 
-[node name="Trees" type="Node" parent="Stage"]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8483, 8.76805, -34.2082)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2273, 8.76805, -55.641)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5911, 8.76805, -18.7593)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1855, 8.76805, -51.8883)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.2611, 8.76805, -73.321)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.6249, 8.76805, -36.4394)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3466, 8.76805, -24.4474)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4222, 8.76805, -45.8802)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.786, 8.76805, -8.99854)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3466, 8.76805, 17.4486)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4222, 8.76805, -3.98415)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Stage/Trees"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.786, 8.76805, 32.8975)
-use_collision = true
-size = Vector3(1.88336, 18.8624, 1.19489)
-
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.162, 1.83202, -2.90081)
