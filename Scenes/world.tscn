@@ -28,7 +28,7 @@ uv1_triplanar = true
 environment = SubResource("Environment_sdjfv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, -0.317224, 0.862318, 0.394685, -0.386483, 0.262501, -0.884152, 4.75979, 7.15297, -17.7329)
 shadow_enabled = true
 
 [node name="Stage" type="Node3D" parent="."]
