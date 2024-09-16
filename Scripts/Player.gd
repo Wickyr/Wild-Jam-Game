@@ -6,6 +6,8 @@ extends CharacterBody3D
 
 @export var mouse_sens = 0.2
 @onready var head = $Head
+@onready var pause_menu: CanvasLayer = $"../PauseMenu"
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -29,9 +31,6 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		
-	if Input.is_action_pressed("quit"):
-		get_tree().quit()
 
 
 	# Get the input direction and handle the movement/deceleration.

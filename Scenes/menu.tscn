@@ -28,7 +28,6 @@ grow_vertical = 2
 scale = Vector2(1.32, 1)
 
 [node name="menu" type="VBoxContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/menu"]
@@ -48,6 +47,7 @@ theme_override_font_sizes/font_size = 40
 text = "Quit"
 
 [node name="settings" type="VBoxContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("2_nuu0o")
 
@@ -67,6 +67,7 @@ popup/item_2/id = 1
 
 [node name="Volume" type="HSlider" parent="MarginContainer/settings"]
 layout_mode = 2
+value = 80.0
 
 [node name="Label" type="Label" parent="MarginContainer/settings/Volume"]
 layout_mode = 2

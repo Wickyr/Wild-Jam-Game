@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=15 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
 [ext_resource type="Texture2D" uid="uid://d2fuv6kv6tgv8" path="res://Ground/slot0_normal_roughness.png" id="6_00ia3"]
 [ext_resource type="Script" path="res://Scripts/Pig.gd" id="7_ehxkd"]
+[ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="8_7so06"]
+[ext_resource type="Script" path="res://Scenes/settings.gd" id="9_syncu"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 2
@@ -25,6 +27,82 @@ mode = 0
 textures = [[ExtResource("5_lkvfm")], [ExtResource("6_00ia3")]]
 
 [node name="World" type="Node3D"]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Pause" type="MarginContainer" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -109.5
+offset_right = 100.5
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.32, 1)
+script = ExtResource("8_7so06")
+
+[node name="menu" type="VBoxContainer" parent="PauseMenu/Pause"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Resume
+"
+
+[node name="Setting" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Settings"
+
+[node name="Quit" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="settings" type="VBoxContainer" parent="PauseMenu/Pause"]
+visible = false
+layout_mode = 2
+script = ExtResource("9_syncu")
+
+[node name="Back" type="Button" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[node name="Resolutions" type="OptionButton" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 2
+popup/item_2/text = "1152x648"
+popup/item_2/id = 1
+
+[node name="Volume" type="HSlider" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+value = 80.0
+
+[node name="Label" type="Label" parent="PauseMenu/Pause/settings/Volume"]
+layout_mode = 2
+offset_left = -58.3333
+offset_top = -4.5
+offset_right = 125.667
+offset_bottom = 18.5
+text = "Volume"
+
+[node name="Mute" type="CheckBox" parent="PauseMenu/Pause/settings/Volume"]
+layout_mode = 2
+offset_left = -57.5757
+offset_top = 18.5
+offset_right = 126.424
+offset_bottom = 49.5
+text = "Mute"
 
 [node name="Env" type="Node3D" parent="."]
 
@@ -520,3 +598,11 @@ size = Vector3(255.12, 1, 265.854)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8497, 0, -22.3385)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Marker3D"]
+
+[connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/menu/Quit" to="PauseMenu/Pause" method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/settings/Back" to="PauseMenu/Pause" method="_on_back_pressed"]
+[connection signal="item_selected" from="PauseMenu/Pause/settings/Resolutions" to="PauseMenu/Pause/settings" method="_on_resolutions_item_selected"]
+[connection signal="value_changed" from="PauseMenu/Pause/settings/Volume" to="PauseMenu/Pause/settings" method="_on_volume_value_changed"]
+[connection signal="toggled" from="PauseMenu/Pause/settings/Volume/Mute" to="PauseMenu/Pause/settings" method="_on_mute_toggled"]
