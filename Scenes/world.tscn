@@ -32,11 +32,11 @@ textures = [[ExtResource("5_lkvfm")], [ExtResource("6_00ia3")]]
 environment = SubResource("Environment_gi00v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.311633, -0.939428, -0.14269, -0.868053, 0.220384, 0.444877, -0.386483, 0.262501, -0.884152, -96.4135, 51.2189, -17.7329)
+transform = Transform3D(-0.311633, -0.939428, -0.14269, -0.868053, 0.220384, 0.444877, -0.386483, 0.262501, -0.884152, -77.4578, 81.6063, -17.7329)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.162, 1.83202, -2.90081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.162, 0.891049, -2.90081)
 
 [node name="Pig" type="Node3D" parent="."]
 transform = Transform3D(-0.597219, 0, 0.802078, 0, 1, 0, -0.802078, 0, -0.597219, -20.8979, 0.4002, -0.0534172)
@@ -54,7 +54,7 @@ mesh = SubResource("CapsuleMesh_rt43k")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Pig/CharacterBody3D/CollisionShape3D"]
-transform = Transform3D(0.221667, 0, -0.616633, 0, 0.537912, 0, 0.931903, 0, 0.146675, -0.0705481, 0.116302, -0.293892)
+transform = Transform3D(-0.135714, 0, -0.627444, 0, 0.537912, 0, 0.948241, 0, -0.0898016, 0.0133724, 0.116302, -0.231405)
 mesh = SubResource("CapsuleMesh_rt43k")
 skeleton = NodePath("../..")
 
@@ -65,6 +65,7 @@ wait_time = 2.5
 one_shot = true
 
 [node name="Trees" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Trees"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00024, 7.36094, -4.19318)

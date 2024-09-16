@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dodnsrc2q8cuw"]
+[gd_scene load_steps=3 format=3 uid="uid://dodnsrc2q8cuw"]
 
 [ext_resource type="Script" path="res://Scripts/UI/menu.gd" id="1_plw05"]
+[ext_resource type="Script" path="res://Scenes/settings.gd" id="2_nuu0o"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,32 +13,81 @@ grow_vertical = 2
 script = ExtResource("1_plw05")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 446.0
-offset_top = 182.0
-offset_right = 630.0
-offset_bottom = 401.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -109.5
+offset_right = 92.0
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.32, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="menu" type="VBoxContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Setting" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Setting" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Settings"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Setting" to="." method="_on_setting_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="settings" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_nuu0o")
+
+[node name="Back" type="Button" parent="MarginContainer/settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[node name="Resolutions" type="OptionButton" parent="MarginContainer/settings"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 2
+popup/item_2/text = "1152x648"
+popup/item_2/id = 1
+
+[node name="Volume" type="HSlider" parent="MarginContainer/settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/settings/Volume"]
+layout_mode = 2
+offset_left = -58.3333
+offset_top = -4.5
+offset_right = 125.667
+offset_bottom = 18.5
+text = "Volume"
+
+[node name="Mute" type="CheckBox" parent="MarginContainer/settings/Volume"]
+layout_mode = 2
+offset_left = -57.5757
+offset_top = 18.5
+offset_right = 126.424
+offset_bottom = 49.5
+text = "Mute"
+
+[connection signal="pressed" from="MarginContainer/menu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/menu/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="MarginContainer/menu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/settings/Back" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="MarginContainer/settings/Resolutions" to="MarginContainer/settings" method="_on_resolutions_item_selected"]
+[connection signal="value_changed" from="MarginContainer/settings/Volume" to="MarginContainer/settings" method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/settings/Volume/Mute" to="MarginContainer/settings" method="_on_mute_toggled"]
