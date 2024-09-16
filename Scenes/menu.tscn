@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dodnsrc2q8cuw"]
+[gd_scene load_steps=4 format=3 uid="uid://dodnsrc2q8cuw"]
 
 [ext_resource type="Script" path="res://Scripts/UI/menu.gd" id="1_plw05"]
+[ext_resource type="FontFile" uid="uid://uujms4cr30hd" path="res://Graphics/UI/IMMORTAL.ttf" id="2_bar53"]
 [ext_resource type="Script" path="res://Scenes/settings.gd" id="2_nuu0o"]
 
 [node name="Menu" type="Control"]
@@ -33,16 +34,19 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_bar53")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="Setting" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bar53")
 theme_override_font_sizes/font_size = 45
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bar53")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
@@ -53,11 +57,13 @@ script = ExtResource("2_nuu0o")
 
 [node name="Back" type="Button" parent="MarginContainer/settings"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bar53")
 theme_override_font_sizes/font_size = 35
 text = "Back"
 
 [node name="Resolutions" type="OptionButton" parent="MarginContainer/settings"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bar53")
 item_count = 3
 popup/item_0/text = "1920x1080"
 popup/item_1/text = "1600x900"
@@ -75,6 +81,7 @@ offset_left = -58.3333
 offset_top = -4.5
 offset_right = 125.667
 offset_bottom = 18.5
+theme_override_fonts/font = ExtResource("2_bar53")
 text = "Volume"
 
 [node name="Mute" type="CheckBox" parent="MarginContainer/settings/Volume"]
@@ -83,6 +90,7 @@ offset_left = -57.5757
 offset_top = 18.5
 offset_right = 126.424
 offset_bottom = 49.5
+theme_override_fonts/font = ExtResource("2_bar53")
 text = "Mute"
 
 [connection signal="pressed" from="MarginContainer/menu/Play" to="." method="_on_play_pressed"]
