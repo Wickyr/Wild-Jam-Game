@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+@onready var audio: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
 
 
 func _on_volume_value_changed(value: float) -> void:
@@ -8,6 +9,7 @@ func _on_volume_value_changed(value: float) -> void:
 
 func _on_mute_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(0,toggled_on)
+	audio.play()
 
 
 func _on_resolutions_item_selected(index: int) -> void:
