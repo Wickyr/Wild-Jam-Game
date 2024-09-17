@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Feast of Epiphany"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

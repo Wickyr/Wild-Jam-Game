@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cay0caj5ph44c"]
+[gd_scene load_steps=4 format=3 uid="uid://cay0caj5ph44c"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2sch8"]
+[ext_resource type="Script" path="res://Scripts/ray_cast_3d.gd" id="2_wmrxb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpp83"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_2sch8")
 
 [node name="Head" type="Node3D" parent="."]
@@ -12,5 +13,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391777, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
+[node name="InteractCheck" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(3.11161, 0, 0, 0, -1.36013e-07, -3.11161, 0, 3.11161, -1.36013e-07, 0, 0.020223, -0.686205)
+script = ExtResource("2_wmrxb")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qpp83")
+
+[node name="Lamp" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.593555, 0.108375, -0.495439)
+visible = false
+light_color = Color(0.995364, 1, 0.7998, 1)
+light_energy = 6.68
+light_volumetric_fog_energy = 5.202
+light_size = 0.121
+omni_range = 9.27919
