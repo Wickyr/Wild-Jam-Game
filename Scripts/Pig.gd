@@ -41,11 +41,6 @@ func _process(delta):
 			MoveTowardPoint(delta, patrolspeed)
 		States.waiting:
 			pass
-		
-	if player_leave == true:
-		currentState = States.following
-	if player_leave == false:
-		currentState = States.walking
 
 func faceDirection(direction : Vector3):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
@@ -56,16 +51,27 @@ func MoveTowardPoint(delta, speed):
 	faceDirection(targetPos)
 	velocity = direction * speed
 	move_and_slide()
+	if(player_leave):
+		CheckForPlayer()
 
+func CheckForPlayer():
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create($".".global_position, get_tree().get_nodes_in_group("Player")[0].global_position, 1, [self]))
+	if(result["collider"].is_in_group("Player")):
+		if player_leave == true:
+			currentState = States.following
 
 func _on_player_leave_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		player_leave = true
+		currentState = States.following
 
 
 func _on_player_enter_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		player_leave = false
+		currentState = States.walking
+		navAgent.set_target_position(waypoints[0].global_position)
 
 
 func _on_timer_timeout() -> void:
