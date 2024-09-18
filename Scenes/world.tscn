@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=25 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_xko2i"]
+[ext_resource type="AudioStream" uid="uid://neemhyqud4ly" path="res://Audio/Ambience/ForestAmbienceDay.wav" id="4_7t5tp"]
 [ext_resource type="Resource" path="res://HTerrain/data.hterrain" id="4_ymp3o"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 [ext_resource type="AudioStream" uid="uid://dyil6tot17sgx" path="res://Audio/Player/FS1.wav" id="5_e6wvn"]
@@ -130,6 +131,12 @@ environment = SubResource("Environment_gi00v")
 transform = Transform3D(-0.311633, -0.939428, -0.14269, -0.868053, 0.220384, 0.444877, -0.386483, 0.262501, -0.884152, -77.4578, 81.6063, -17.7329)
 shadow_enabled = true
 
+[node name="DayAudio" type="AudioStreamPlayer" parent="Env"]
+stream = ExtResource("4_7t5tp")
+autoplay = true
+
+[node name="NightAudio" type="AudioStreamPlayer" parent="Env"]
+
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.162, 0.891049, -2.90081)
 current_speed = 3.0
@@ -139,8 +146,8 @@ footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
-volume_db = -22.5
-max_distance = 1.75
+volume_db = -27.0
+max_distance = 1.5
 
 [node name="Pig" type="Node3D" parent="."]
 transform = Transform3D(-0.597219, 0, 0.802078, 0, 1, 0, -0.802078, 0, -0.597219, -20.8979, 0.4002, -0.0534172)
@@ -182,11 +189,11 @@ shape = SubResource("SphereShape3D_c8npn")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Pig/CharacterBody3D"]
 stream = ExtResource("6_26kup")
 autoplay = true
-max_distance = 15.0
+max_distance = 10.0
 
 [node name="PigFootstepPlayer" type="AudioStreamPlayer3D" parent="Pig/CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259255, 0)
-volume_db = -10.0
+volume_db = -18.0
 max_distance = 30.0
 
 [node name="Trees" type="Node3D" parent="."]
@@ -655,6 +662,7 @@ script = ExtResource("10_j3y87")
 [node name="TrufflePickUp" type="AudioStreamPlayer3D" parent="Truffle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.45058e-09, 0)
 stream = ExtResource("8_lveoo")
+volume_db = -7.0
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]

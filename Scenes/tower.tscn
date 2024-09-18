@@ -1,0 +1,221 @@
+[gd_scene load_steps=10 format=3 uid="uid://7bnwv4p47cgh"]
+
+[ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_nhgtl"]
+[ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_56x8e"]
+[ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_383rq"]
+[ext_resource type="AudioStream" uid="uid://vqxm2nxh6dsc" path="res://Audio/Ambience/TowerAmbience.wav" id="4_tksr1"]
+[ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="5_tr371"]
+[ext_resource type="AudioStream" uid="uid://chuoa3dmvo05d" path="res://Audio/Player/TowerFS2.wav" id="7_ibcet"]
+[ext_resource type="AudioStream" uid="uid://cp2vesbag36p6" path="res://Audio/Player/TowerFS3.wav" id="8_br8iw"]
+[ext_resource type="AudioStream" uid="uid://bstxtaa2bw4p5" path="res://Audio/Player/Heartbeat.wav" id="8_v3aw3"]
+
+[sub_resource type="Environment" id="Environment_gi00v"]
+background_mode = 2
+
+[node name="World" type="Node3D"]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Pause" type="MarginContainer" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -109.5
+offset_right = 100.5
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.32, 1)
+script = ExtResource("1_nhgtl")
+
+[node name="menu" type="VBoxContainer" parent="PauseMenu/Pause"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Resume
+"
+
+[node name="Setting" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Settings"
+
+[node name="Quit" type="Button" parent="PauseMenu/Pause/menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="settings" type="VBoxContainer" parent="PauseMenu/Pause"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_56x8e")
+
+[node name="Back" type="Button" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[node name="Resolutions" type="OptionButton" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 2
+popup/item_2/text = "1152x648"
+popup/item_2/id = 1
+
+[node name="Volume" type="HSlider" parent="PauseMenu/Pause/settings"]
+layout_mode = 2
+value = 80.0
+
+[node name="Label" type="Label" parent="PauseMenu/Pause/settings/Volume"]
+layout_mode = 2
+offset_left = -58.3333
+offset_top = -4.5
+offset_right = 125.667
+offset_bottom = 18.5
+text = "Volume"
+
+[node name="Mute" type="CheckBox" parent="PauseMenu/Pause/settings/Volume"]
+layout_mode = 2
+offset_left = -57.5757
+offset_top = 18.5
+offset_right = 126.424
+offset_bottom = 49.5
+text = "Mute"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PauseMenu"]
+stream = ExtResource("3_383rq")
+volume_db = 5.0
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_gi00v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.311633, -0.939428, -0.14269, -0.868053, 0.220384, 0.444877, -0.386483, 0.262501, -0.884152, -77.4578, 81.6063, -17.7329)
+shadow_enabled = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="Env"]
+stream = ExtResource("4_tksr1")
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource("5_tr371")]
+transform = Transform3D(0.0619195, 0, -0.998081, 0, 1, 0, 0.998081, 0, 0.0619195, -4.63014, 1.97195, -0.00107181)
+current_speed = 3.0
+walk_speed = 3.0
+run_speed = 3.0
+footstep_sounds = Array[AudioStream]([ExtResource("7_ibcet"), ExtResource("8_br8iw")])
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
+volume_db = -18.0
+max_distance = 1.5
+
+[node name="Heartbeat" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("8_v3aw3")
+volume_db = -15.0
+autoplay = true
+
+[node name="Tower" type="Node" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Tower"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+use_collision = true
+radius = 12.5
+sides = 12
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 3.07565, 0, 0.258819, 0, 0.965926, -3.2269, 13.0192, 12.1382)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 3.07565, 0, 0.258819, 0, 0.965926, 3.27181, 13.0192, -12.1822)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.709817, 0, -0.704387, 0, 3.07565, 0, 0.704387, 0, 0.709817, -8.8374, 13.0192, 8.91849)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.709817, 0, -0.704387, 0, 3.07565, 0, 0.704387, 0, 0.709817, 8.88231, 13.0192, -8.96242)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.709817, 0, -0.704387, 0, 3.07565, 0, 0.704387, 0, 0.709817, -8.8374, 13.0192, 8.91849)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.709817, 0, -0.704387, 0, 3.07565, 0, 0.704387, 0, 0.709817, 8.88231, 13.0192, -8.96242)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.251444, 0, -0.967872, 0, 3.07565, 0, 0.967872, 0, 0.251444, -12.1163, 13.0192, 3.31111)
+use_collision = true
+size = Vector3(7.76941, 9.66028, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(0.251444, 0, -0.967872, 0, 3.07565, 0, 0.967872, 0, 0.251444, 12.169, 13.0192, -3.32514)
+use_collision = true
+size = Vector3(7.78918, 9.66028, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.262476, 0, -0.964939, 0, 3.07565, 0, 0.964939, 0, -0.262476, -12.1254, 13.0192, -3.31734)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.262476, 0, -0.964939, 0, 3.07565, 0, 0.964939, 0, -0.262476, 12.1703, 13.0192, 3.27342)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.71374, 0, -0.700411, 0, 3.07565, 0, 0.700411, 0, -0.71374, -8.69199, 13.0192, -9.10533)
+use_collision = true
+size = Vector3(7.8797, 9.66028, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.71374, 0, -0.700411, 0, 3.07565, 0, 0.700411, 0, -0.71374, 8.89427, 13.0192, 8.90697)
+use_collision = true
+size = Vector3(7.46533, 9.66028, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.967356, 0, -0.25342, 0, 3.07565, 0, 0.25342, 0, -0.967356, -3.17569, 13.0192, -12.1957)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(-0.967356, 0, -0.25342, 0, 3.07565, 0, 0.25342, 0, -0.967356, 3.2206, 13.0192, 12.1518)
+use_collision = true
+size = Vector3(6.46436, 9.66028, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Tower/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.93195, 0)
+radius = 5.25843
+height = 37.5622
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0455437, 1.69432, -1.06452)
+light_energy = 9.662
+omni_range = 4096.0
+
+[connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/menu/Quit" to="PauseMenu/Pause" method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/Pause/settings/Back" to="PauseMenu/Pause" method="_on_back_pressed"]
+[connection signal="item_selected" from="PauseMenu/Pause/settings/Resolutions" to="PauseMenu/Pause/settings" method="_on_resolutions_item_selected"]
+[connection signal="value_changed" from="PauseMenu/Pause/settings/Volume" to="PauseMenu/Pause/settings" method="_on_volume_value_changed"]
+[connection signal="toggled" from="PauseMenu/Pause/settings/Volume/Mute" to="PauseMenu/Pause/settings" method="_on_mute_toggled"]
