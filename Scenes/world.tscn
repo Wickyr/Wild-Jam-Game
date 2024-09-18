@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=20 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
 [ext_resource type="Texture2D" uid="uid://d2fuv6kv6tgv8" path="res://Ground/slot0_normal_roughness.png" id="6_00ia3"]
+[ext_resource type="AudioStream" uid="uid://cod04wxuwhm2o" path="res://Audio/Pig/Pig.wav" id="6_26kup"]
 [ext_resource type="Script" path="res://Scripts/Pig.gd" id="7_ehxkd"]
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="8_7so06"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="9_syncu"]
@@ -163,6 +164,11 @@ shape = SubResource("SphereShape3D_ugj1v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pig/CharacterBody3D/PlayerEnter"]
 shape = SubResource("SphereShape3D_c8npn")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Pig/CharacterBody3D"]
+stream = ExtResource("6_26kup")
+autoplay = true
+max_distance = 15.0
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70095, 0)
