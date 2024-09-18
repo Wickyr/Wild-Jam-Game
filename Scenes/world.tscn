@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=24 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://becy63cw88utw" path="res://Audio/Player/FS3.wav" id="7_b1kkw"]
 [ext_resource type="Script" path="res://Scripts/Pig.gd" id="7_ehxkd"]
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="8_7so06"]
+[ext_resource type="AudioStream" uid="uid://b2hh0twn4y3u5" path="res://Audio/Player/Truffle1.wav" id="8_lveoo"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="9_syncu"]
 [ext_resource type="Script" path="res://Scripts/truffle.gd" id="10_j3y87"]
 
@@ -139,7 +140,7 @@ footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
 volume_db = -22.5
-max_distance = 2.5
+max_distance = 1.75
 
 [node name="Pig" type="Node3D" parent="."]
 transform = Transform3D(-0.597219, 0, 0.802078, 0, 1, 0, -0.802078, 0, -0.597219, -20.8979, 0.4002, -0.0534172)
@@ -186,7 +187,7 @@ max_distance = 15.0
 [node name="PigFootstepPlayer" type="AudioStreamPlayer3D" parent="Pig/CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259255, 0)
 volume_db = -10.0
-max_distance = 50.0
+max_distance = 30.0
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70095, 0)
@@ -650,6 +651,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5019, 0.0721631, -9.76532
 use_collision = true
 size = Vector3(1, 0.471436, 1)
 script = ExtResource("10_j3y87")
+
+[node name="TrufflePickUp" type="AudioStreamPlayer3D" parent="Truffle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.45058e-09, 0)
+stream = ExtResource("8_lveoo")
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
