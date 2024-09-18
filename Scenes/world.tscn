@@ -1,13 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=23 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_xko2i"]
 [ext_resource type="Resource" path="res://HTerrain/data.hterrain" id="4_ymp3o"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
+[ext_resource type="AudioStream" uid="uid://dyil6tot17sgx" path="res://Audio/Player/FS1.wav" id="5_e6wvn"]
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
 [ext_resource type="Texture2D" uid="uid://d2fuv6kv6tgv8" path="res://Ground/slot0_normal_roughness.png" id="6_00ia3"]
 [ext_resource type="AudioStream" uid="uid://cod04wxuwhm2o" path="res://Audio/Pig/Pig.wav" id="6_26kup"]
+[ext_resource type="AudioStream" uid="uid://cyr2khkm4pk2o" path="res://Audio/Player/FS2.wav" id="6_c48tw"]
+[ext_resource type="AudioStream" uid="uid://becy63cw88utw" path="res://Audio/Player/FS3.wav" id="7_b1kkw"]
 [ext_resource type="Script" path="res://Scripts/Pig.gd" id="7_ehxkd"]
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="8_7so06"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="9_syncu"]
@@ -128,6 +131,15 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.162, 0.891049, -2.90081)
+current_speed = 3.0
+walk_speed = 3.0
+run_speed = 5.0
+footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48tw"), ExtResource("7_b1kkw")])
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
+volume_db = -22.5
+max_distance = 2.5
 
 [node name="Pig" type="Node3D" parent="."]
 transform = Transform3D(-0.597219, 0, 0.802078, 0, 1, 0, -0.802078, 0, -0.597219, -20.8979, 0.4002, -0.0534172)
@@ -135,6 +147,7 @@ transform = Transform3D(-0.597219, 0, 0.802078, 0, 1, 0, -0.802078, 0, -0.597219
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Pig" node_paths=PackedStringArray("waypoints")]
 script = ExtResource("7_ehxkd")
 waypoints = [NodePath("../../Marker3D")]
+footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48tw"), ExtResource("7_b1kkw")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pig/CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.429968, 0, 0, 0, 1, 0, 0, 0)
@@ -169,6 +182,11 @@ shape = SubResource("SphereShape3D_c8npn")
 stream = ExtResource("6_26kup")
 autoplay = true
 max_distance = 15.0
+
+[node name="PigFootstepPlayer" type="AudioStreamPlayer3D" parent="Pig/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259255, 0)
+volume_db = -10.0
+max_distance = 50.0
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70095, 0)

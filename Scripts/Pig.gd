@@ -11,9 +11,14 @@ var navAgent : NavigationAgent3D
 var waypointIndex : int
 @export var patrolspeed = 4
 @onready var timer: Timer = $Timer
+@onready var footstep_player: AudioStreamPlayer3D = $PigFootstepPlayer
+@export var footstep_sounds: Array[AudioStream] = []
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player_leave: bool
 var player
+var footstep_timer = 0.0
+var footstep_interval = 0.4 
+var last_footstep_index = -1  
 
 
 func _ready():
@@ -34,11 +39,20 @@ func _process(delta):
 				timer.start()
 				return
 			MoveTowardPoint(delta, patrolspeed)
+			footstep_timer += delta
+			if footstep_timer >= footstep_interval:
+				play_random_footstep_sound()
+				footstep_timer = 0.0  
 		States.following:
 			if(navAgent.is_navigation_finished()):
 				currentState = States.waiting
 			navAgent.set_target_position(player.global_position)
 			MoveTowardPoint(delta, patrolspeed)
+			footstep_timer += delta
+			if footstep_timer >= footstep_interval:
+				play_random_footstep_sound()
+				footstep_timer = 0.0
+				
 		States.waiting:
 			pass
 
@@ -72,7 +86,18 @@ func _on_player_enter_body_entered(body: Node3D) -> void:
 		player_leave = false
 		currentState = States.walking
 		navAgent.set_target_position(waypoints[0].global_position)
+		
+func play_random_footstep_sound():
+	if footstep_sounds.size() > 0:
+		var random_index = randi() % footstep_sounds.size()
+		
+		# Ensure the new sound is not the same as the last one
+		while random_index == last_footstep_index and footstep_sounds.size() > 1:
+			random_index = randi() % footstep_sounds.size()
 
+		last_footstep_index = random_index  # Store the index of the current sound
+		footstep_player.stream = footstep_sounds[random_index]  # Set the selected sound
+		footstep_player.play()  # Play the sound
 
 func _on_timer_timeout() -> void:
 	currentState = States.walking
@@ -80,3 +105,5 @@ func _on_timer_timeout() -> void:
 	if waypointIndex > waypoints.size() - 1:
 		waypointIndex = 0
 	navAgent.set_target_position(waypoints[waypointIndex].global_position)
+	
+	
