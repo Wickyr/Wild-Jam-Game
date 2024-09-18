@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
-[ext_resource type="AudioStream" uid="uid://didd8m8h8s2c5" path="res://Audio/UI.wav" id="3_xko2i"]
+[ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_xko2i"]
 [ext_resource type="Resource" path="res://HTerrain/data.hterrain" id="4_ymp3o"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
@@ -114,6 +114,7 @@ text = "Mute"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PauseMenu"]
 stream = ExtResource("3_xko2i")
+volume_db = 5.0
 
 [node name="Env" type="Node3D" parent="."]
 

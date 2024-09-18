@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dodnsrc2q8cuw"]
+[gd_scene load_steps=6 format=3 uid="uid://dodnsrc2q8cuw"]
 
 [ext_resource type="Script" path="res://Scripts/UI/menu.gd" id="1_plw05"]
+[ext_resource type="FontFile" uid="uid://u3c7xjl2b56m" path="res://Graphics/UI/Canterbury.ttf" id="2_3sa62"]
 [ext_resource type="FontFile" uid="uid://uujms4cr30hd" path="res://Graphics/UI/IMMORTAL.ttf" id="2_bar53"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_nuu0o"]
-[ext_resource type="AudioStream" uid="uid://didd8m8h8s2c5" path="res://Audio/UI.wav" id="4_se85h"]
+[ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="4_se85h"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -33,30 +34,22 @@ scale = Vector2(1.32, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/menu"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_bar53")
-theme_override_font_sizes/font_size = 80
-text = "Trüffelturm"
-
 [node name="Play" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_bar53")
+theme_override_fonts/font = ExtResource("2_3sa62")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="Setting" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bar53")
+theme_override_fonts/font = ExtResource("2_3sa62")
 theme_override_font_sizes/font_size = 45
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MarginContainer/menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bar53")
+theme_override_fonts/font = ExtResource("2_3sa62")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
@@ -67,7 +60,7 @@ script = ExtResource("2_nuu0o")
 
 [node name="Back" type="Button" parent="MarginContainer/settings"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bar53")
+theme_override_fonts/font = ExtResource("2_3sa62")
 theme_override_font_sizes/font_size = 35
 text = "Back"
 
