@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7bnwv4p47cgh"]
+[gd_scene load_steps=34 format=3 uid="uid://7bnwv4p47cgh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_nhgtl"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_56x8e"]
@@ -12,15 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://dofbepf4nyg7k" path="res://Graphics/Textures/360_F_104549545_T0fiXD6ml9eg08wGrqCEIGK6ZcBSsYHC.jpg" id="9_didek"]
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="11_2oj10"]
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="12_c24fi"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lci06"]
-
-[sub_resource type="Sky" id="Sky_bk5xc"]
-sky_material = SubResource("ProceduralSkyMaterial_lci06")
+[ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="13_g1fsj"]
+[ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="14_wtutb"]
+[ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="15_37tti"]
+[ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="15_bqyqu"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 2
-sky = SubResource("Sky_bk5xc")
+ambient_light_color = Color(0.1785, 0.106819, 0.06395, 1)
+fog_enabled = true
+fog_light_color = Color(0.28355, 0.094781, 0.0818346, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytj4s"]
 albedo_texture = ExtResource("9_bbfei")
@@ -51,6 +52,65 @@ albedo_texture = ExtResource("11_2oj10")
 albedo_color = Color(0.661081, 0.661081, 0.661081, 1)
 albedo_texture = ExtResource("12_c24fi")
 uv1_scale = Vector3(3.28, -3.115, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_geotr"]
+albedo_color = Color(0.710741, 0.710741, 0.710741, 1)
+albedo_texture = ExtResource("13_g1fsj")
+uv1_scale = Vector3(0.06, 4.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2i3r"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cx8rm"]
+albedo_texture = ExtResource("14_wtutb")
+uv1_scale = Vector3(0.07, 1.01, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2b7ag"]
+gradient = ExtResource("15_37tti")
+
+[sub_resource type="Curve" id="Curve_e2isa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.331707, 0.977695), 0.0, 0.0, 0, 0, Vector2(0.785366, 0.197026), 0.0, 0.0, 0, 0, Vector2(1, 0.0334573), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_meqab"]
+curve = SubResource("Curve_e2isa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t02oy"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.1
+initial_velocity_max = 5.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 4.0
+scale_min = 0.0
+scale_max = 0.0
+scale_curve = SubResource("CurveTexture_meqab")
+color_ramp = SubResource("GradientTexture1D_2b7ag")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sau7d"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("15_bqyqu")
+billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_gl127"]
+material = SubResource("StandardMaterial3D_sau7d")
 
 [node name="World" type="Node3D"]
 
@@ -141,6 +201,7 @@ environment = SubResource("Environment_gi00v")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
 transform = Transform3D(-0.311633, -0.939428, -0.14269, -0.868053, 0.220384, 0.444877, -0.386483, 0.262501, -0.884152, -77.4578, 81.6063, -17.7329)
+visible = false
 shadow_enabled = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Env"]
@@ -148,7 +209,7 @@ stream = ExtResource("4_tksr1")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("5_tr371")]
-transform = Transform3D(0.784636, 0, 0.619957, 0, 1, 0, -0.619957, 0, 0.784636, 2.57318, 1.50508, 4.22759)
+transform = Transform3D(-0.113584, 0, 0.993528, 0, 1, 0, -0.993528, 0, -0.113584, 4.61349, 1.50508, 2.13901)
 current_speed = 3.0
 walk_speed = 3.0
 run_speed = 3.0
@@ -829,8 +890,8 @@ sides = 12
 material = SubResource("StandardMaterial3D_3hxb8")
 
 [node name="Door" type="CSGBox3D" parent="Tower"]
-transform = Transform3D(0.698053, -0.716042, -0.00257278, 0.000758857, 0.00433279, -0.99999, 0.716046, 0.698044, 0.0035679, 1.87146, 17.3843, 1.71372)
-size = Vector3(0.233398, 1.4465, 3.07932)
+transform = Transform3D(0.741297, -0.671174, -0.00234556, 0.000758856, 0.00433279, -0.99999, 0.671177, 0.741288, 0.00372122, 1.70265, 17.3842, 1.82912)
+size = Vector3(0.162475, 1.4465, 3.07932)
 material = SubResource("StandardMaterial3D_pehaq")
 
 [node name="Door2" type="CSGBox3D" parent="Tower"]
@@ -849,6 +910,485 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.456769, 19.9103, 2.10411)
 use_collision = true
 size = Vector3(12.7334, 1, 21.1345)
 material = SubResource("StandardMaterial3D_255er")
+
+[node name="Torches" type="Node" parent="Tower"]
+
+[node name="Torch2" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.833982, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch2"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch2/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch10" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(0.0180631, 0, 0.999837, 0, 1, 0, -0.999837, 0, 0.0180631, 0.485555, 0.607264, 8.48524)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch10"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch10/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch8" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.1017, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch8"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch8/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch9" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(0.687506, 0, 0.726179, 0, 1, 0, -0.726179, 0, 0.687506, -0.459066, 15.1017, 5.19525)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch9"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch9/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch6" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.1528, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch6"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch6/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch4" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.64701, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch4"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch4/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch3" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(-0.999315, 0, -0.0370102, 0, 1, 0, 0.0370102, 0, -0.999315, 0.138741, 2.27315, -0.477318)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch3"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch3/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch7" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(-0.999315, 0, -0.0370102, 0, 1, 0, 0.0370102, 0, -0.999315, 0.138741, 13.0786, -0.477318)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch7"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch7/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Torch5" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(-0.999315, 0, -0.0370102, 0, 1, 0, 0.0370102, 0, -0.999315, 0.138741, 7.65356, -0.477318)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch5"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch5/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
