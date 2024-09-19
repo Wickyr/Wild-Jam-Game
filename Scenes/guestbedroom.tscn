@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bs03axsrpxhj6"]
+[gd_scene load_steps=37 format=3 uid="uid://bs03axsrpxhj6"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_d7ogt"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_encdf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="10_ggxpx"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="11_r1624"]
 [ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="12_kd5t0"]
+[ext_resource type="AudioStream" uid="uid://tvubrouxelx8" path="res://Audio/Ambience/Fire.wav" id="12_nqn4i"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="13_lk2uj"]
 [ext_resource type="Texture2D" uid="uid://cs4b2asidi8a2" path="res://Graphics/Textures/brick-wall-background-texture_1048-17010.jpg" id="14_4ug7q"]
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="15_ogk84"]
@@ -295,6 +296,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 49.542, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Torches/Torch/CSGBox3D6"]
+stream = ExtResource("12_nqn4i")
+autoplay = true
+max_distance = 5.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Room/Torches/Torch"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 49.1419, 0.452332)

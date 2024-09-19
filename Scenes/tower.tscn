@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://7bnwv4p47cgh"]
+[gd_scene load_steps=37 format=3 uid="uid://7bnwv4p47cgh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_nhgtl"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_56x8e"]
@@ -13,10 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="11_2oj10"]
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="12_c24fi"]
 [ext_resource type="Script" path="res://Scripts/doorintoroom.gd" id="12_uftlv"]
+[ext_resource type="AudioStream" uid="uid://0hnhke05aohy" path="res://Audio/Player/untitled.wav" id="13_bua1n"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="13_g1fsj"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="14_wtutb"]
 [ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="15_37tti"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="15_bqyqu"]
+[ext_resource type="AudioStream" uid="uid://tvubrouxelx8" path="res://Audio/Ambience/Fire.wav" id="16_soslk"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 1
@@ -905,6 +907,12 @@ transform = Transform3D(0.964265, -0.260824, 0.0465254, 0.0387401, -0.034914, -0
 size = Vector3(0.233398, 1.60185, 3.0858)
 material = SubResource("StandardMaterial3D_pehaq")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Door2"]
+transform = Transform3D(0.999999, -4.47035e-07, 1.72295e-08, -2.98023e-08, 1, 1.30385e-08, 1.86265e-09, -1.86265e-09, 1, 0.00656366, 0.0241615, -0.000590086)
+stream = ExtResource("13_bua1n")
+pitch_scale = 0.75
+autoplay = true
+
 [node name="Floor" type="CSGBox3D" parent="Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.456769, 0.00600815, 2.10411)
 use_collision = true
@@ -931,6 +939,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch2/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 2.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch2"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
@@ -985,6 +998,11 @@ transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.551
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch10/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch10"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
 size = Vector3(0.0957031, 0.328674, 0.173927)
@@ -1037,6 +1055,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch8/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch8"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
@@ -1091,6 +1114,11 @@ transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.551
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch9/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 2.0
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch9"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
 size = Vector3(0.0957031, 0.328674, 0.173927)
@@ -1143,6 +1171,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch6/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch6"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
@@ -1197,6 +1230,11 @@ transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.551
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch4/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch4"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
 size = Vector3(0.0957031, 0.328674, 0.173927)
@@ -1249,6 +1287,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch3/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch3"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
@@ -1303,6 +1346,11 @@ transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.551
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch7/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch7"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
 size = Vector3(0.0957031, 0.328674, 0.173927)
@@ -1355,6 +1403,11 @@ material = SubResource("StandardMaterial3D_geotr")
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch5/CSGBox3D6"]
+stream = ExtResource("16_soslk")
+autoplay = true
+max_distance = 4.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch5"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
