@@ -1,6 +1,7 @@
 extends CharacterBody3D
 enum States{
 	walking,
+	dig,
 	following,
 	waiting
 	}
@@ -19,6 +20,7 @@ var player
 var footstep_timer = 0.0
 var footstep_interval = 0.4 
 var last_footstep_index = -1  
+@onready var dig: Timer = $"../Dig"
 
 
 func _ready():
@@ -35,7 +37,7 @@ func _process(delta):
 	match currentState:
 		States.walking:
 			if(navAgent.is_navigation_finished()):
-				currentState = States.waiting
+				currentState = States.dig
 				timer.start()
 				return
 			MoveTowardPoint(delta, patrolspeed)
@@ -52,7 +54,9 @@ func _process(delta):
 			if footstep_timer >= footstep_interval:
 				play_random_footstep_sound()
 				footstep_timer = 0.0
-				
+		States.dig:
+			dig.start()
+			pass
 		States.waiting:
 			pass
 
@@ -105,5 +109,7 @@ func _on_timer_timeout() -> void:
 	if waypointIndex > waypoints.size() - 1:
 		waypointIndex = 0
 	navAgent.set_target_position(waypoints[waypointIndex].global_position)
-	
-	
+
+
+func _on_dig_timeout() -> void:
+	currentState = States.waiting

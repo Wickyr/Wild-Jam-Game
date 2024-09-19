@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://7bnwv4p47cgh"]
+[gd_scene load_steps=35 format=3 uid="uid://7bnwv4p47cgh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_nhgtl"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_56x8e"]
@@ -12,9 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dofbepf4nyg7k" path="res://Graphics/Textures/360_F_104549545_T0fiXD6ml9eg08wGrqCEIGK6ZcBSsYHC.jpg" id="9_didek"]
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="11_2oj10"]
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="12_c24fi"]
+[ext_resource type="Script" path="res://Scripts/doorintoroom.gd" id="12_uftlv"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="13_g1fsj"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="14_wtutb"]
-[ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="15_37tti"]
+[ext_resource type="Gradient" path="res://Graphics/Textures/Fire.tres" id="15_37tti"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="15_bqyqu"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
@@ -894,8 +895,10 @@ material = SubResource("StandardMaterial3D_3hxb8")
 
 [node name="Door" type="CSGBox3D" parent="Tower"]
 transform = Transform3D(0.741297, -0.671174, -0.00234556, 0.000758856, 0.00433279, -0.99999, 0.671177, 0.741288, 0.00372122, 1.70265, 17.3842, 1.82912)
+use_collision = true
 size = Vector3(0.162475, 1.4465, 3.07932)
 material = SubResource("StandardMaterial3D_pehaq")
+script = ExtResource("12_uftlv")
 
 [node name="Door2" type="CSGBox3D" parent="Tower"]
 transform = Transform3D(0.964265, -0.260824, 0.0465254, 0.0387401, -0.034914, -0.998639, 0.262094, 0.964755, -0.023562, 5.6989, 2.0648, 1.90086)

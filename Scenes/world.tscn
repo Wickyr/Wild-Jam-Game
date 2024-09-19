@@ -40,7 +40,7 @@ script = ExtResource("5_58vx7")
 mode = 0
 textures = [[ExtResource("5_lkvfm")], [ExtResource("6_00ia3")]]
 
-[node name="World" type="Node3D"]
+[node name="World2" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
@@ -195,6 +195,8 @@ max_distance = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259255, 0)
 volume_db = -18.0
 max_distance = 30.0
+
+[node name="Dig" type="Timer" parent="Pig"]
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70095, 0)
@@ -675,3 +677,4 @@ volume_db = -7.0
 [connection signal="body_entered" from="Pig/CharacterBody3D/PlayerLeave" to="Pig/CharacterBody3D" method="_on_player_leave_body_entered"]
 [connection signal="body_exited" from="Pig/CharacterBody3D/PlayerLeave" to="Pig/CharacterBody3D" method="_on_player_leave_body_exited"]
 [connection signal="body_entered" from="Pig/CharacterBody3D/PlayerEnter" to="Pig/CharacterBody3D" method="_on_player_enter_body_entered"]
+[connection signal="timeout" from="Pig/Dig" to="Pig/CharacterBody3D" method="_on_dig_timeout"]

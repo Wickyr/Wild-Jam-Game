@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://3wu831tb5401"]
+[gd_scene load_steps=45 format=3 uid="uid://dgjtey3s65nsy"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_ao4cu"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_g0ni2"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="12_sugix"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="13_6lt7k"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="14_sh6e5"]
-[ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="15_bnm3s"]
+[ext_resource type="Gradient" path="res://Graphics/Textures/Fire.tres" id="15_bnm3s"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="16_a24vc"]
 [ext_resource type="Texture2D" uid="uid://chd51g4bqsgvt" path="res://Graphics/Textures/sheets.jpg" id="16_xwui0"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="17_8osyh"]
@@ -161,7 +161,7 @@ script = ExtResource("19_l8f1d")
 mode = 0
 textures = [[ExtResource("20_0qiw2")], [ExtResource("21_mauqj")]]
 
-[node name="World" type="Node3D"]
+[node name="World2" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
