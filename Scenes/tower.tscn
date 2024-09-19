@@ -893,7 +893,7 @@ sides = 12
 material = SubResource("StandardMaterial3D_3hxb8")
 
 [node name="Door" type="CSGBox3D" parent="Tower"]
-transform = Transform3D(0.741297, -0.671174, -0.00234556, 0.000758856, 0.00433279, -0.99999, 0.671177, 0.741288, 0.00372122, 1.70265, 17.3842, 1.82912)
+transform = Transform3D(0.741297, -0.671174, -0.00234556, 0.000758856, 0.00433279, -0.99999, 0.671177, 0.741288, 0.00372122, 4.1319, 17.3842, 4.40239)
 size = Vector3(0.162475, 1.4465, 3.07932)
 material = SubResource("StandardMaterial3D_pehaq")
 
@@ -1076,7 +1076,7 @@ process_material = SubResource("ParticleProcessMaterial_t02oy")
 draw_pass_1 = SubResource("QuadMesh_gl127")
 
 [node name="Torch9" type="Node3D" parent="Tower/Torches"]
-transform = Transform3D(0.687506, 0, 0.726179, 0, 1, 0, -0.726179, 0, 0.687506, -0.459066, 15.1017, 5.19525)
+transform = Transform3D(0.687506, 0, 0.726179, 0, 1, 0, -0.726179, 0, 0.687506, 0.531573, 15.1256, 6.15719)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch9"]
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
