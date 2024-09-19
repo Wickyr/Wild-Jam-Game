@@ -18,10 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="15_bqyqu"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.142785, 0.366748, 2.40654e-07, 1)
 ambient_light_color = Color(0.1785, 0.106819, 0.06395, 1)
+glow_enabled = true
 fog_enabled = true
-fog_light_color = Color(0.28355, 0.094781, 0.0818346, 1)
+fog_light_color = Color(0.898523, 0.512354, 0.472726, 1)
+fog_light_energy = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytj4s"]
 albedo_texture = ExtResource("9_bbfei")
