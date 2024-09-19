@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_xko2i"]
 [ext_resource type="AudioStream" uid="uid://neemhyqud4ly" path="res://Audio/Ambience/ForestAmbienceDay.wav" id="4_7t5tp"]
-[ext_resource type="Resource" path="res://HTerrain/data.hterrain" id="4_ymp3o"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 [ext_resource type="AudioStream" uid="uid://dyil6tot17sgx" path="res://Audio/Player/FS1.wav" id="5_e6wvn"]
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="5_lkvfm"]
@@ -17,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://b2hh0twn4y3u5" path="res://Audio/Player/Truffle1.wav" id="8_lveoo"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="9_syncu"]
 [ext_resource type="Script" path="res://Scripts/truffle.gd" id="10_j3y87"]
+[ext_resource type="Resource" path="res://HTerrain2/data.hterrain" id="12_7of0u"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 2
@@ -629,7 +629,7 @@ navigation_mesh = SubResource("NavigationMesh_cxmb2")
 [node name="HTerrain" type="Node3D" parent="NavigationRegion3D/Stage"]
 script = ExtResource("3_ledq5")
 centered = true
-_terrain_data = ExtResource("4_ymp3o")
+_terrain_data = ExtResource("12_7of0u")
 chunk_size = 32
 collision_enabled = true
 collision_layer = 1
