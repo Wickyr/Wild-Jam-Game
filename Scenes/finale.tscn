@@ -90,6 +90,7 @@ albedo_texture = ExtResource("25_hn2in")
 [node name="World2" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Pause" type="MarginContainer" parent="PauseMenu"]
 anchors_preset = 8
