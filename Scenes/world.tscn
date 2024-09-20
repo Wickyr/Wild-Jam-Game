@@ -40,15 +40,16 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.76
 fog_enabled = true
 fog_light_color = Color(0.470266, 0.30782, 0.164342, 1)
+fog_light_energy = 1.68
 fog_sun_scatter = 0.22
 fog_density = 0.02
-fog_sky_affect = 0.042
+fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0704
-volumetric_fog_anisotropy = 0.05
-volumetric_fog_length = 27.94
+volumetric_fog_density = 0.0986
+volumetric_fog_anisotropy = 0.5
+volumetric_fog_length = 12.21
 volumetric_fog_detail_spread = 2.27358
-volumetric_fog_sky_affect = 0.4
+volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_065pp"]
 
