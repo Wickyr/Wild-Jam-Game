@@ -1,12 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://dodnsrc2q8cuw"]
+[gd_scene load_steps=44 format=3 uid="uid://dodnsrc2q8cuw"]
 
 [ext_resource type="Script" path="res://Scripts/UI/menu.gd" id="1_plw05"]
 [ext_resource type="FontFile" uid="uid://u3c7xjl2b56m" path="res://Graphics/UI/Canterbury.ttf" id="2_3sa62"]
 [ext_resource type="FontFile" uid="uid://uujms4cr30hd" path="res://Graphics/UI/IMMORTAL.ttf" id="2_bar53"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_nuu0o"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="4_se85h"]
-[ext_resource type="AudioStream" uid="uid://bylprdrqwmqxq" path="res://Audio/Ambience/ForestAmbienceNight.wav" id="5_aoqqd"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="6_a8vut"]
+[ext_resource type="AudioStream" uid="uid://dx2u40p1x421" path="res://Audio/Ambience/MenuTheme.wav" id="6_b88la"]
 [ext_resource type="Resource" path="res://HTerrain2/data.hterrain" id="7_mf451"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="8_wkmgg"]
 [ext_resource type="Texture2D" uid="uid://xtany0akt6l3" path="res://Ground/slot0_albedo_bump.png" id="9_kg6fi"]
@@ -51,7 +51,10 @@ uv1_scale = Vector3(1.53, 3.125, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5aki3"]
 albedo_texture = ExtResource("20_lcx6i")
-uv1_scale = Vector3(2.83, 2.115, 1)
+uv1_scale = Vector3(7.82, 2.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_631ht"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etp5i"]
 albedo_texture = ExtResource("19_4k57x")
@@ -206,17 +209,21 @@ sky_material = SubResource("ProceduralSkyMaterial_1rdmu")
 
 [sub_resource type="Environment" id="Environment_8taen"]
 background_mode = 1
-background_energy_multiplier = 0.05
+background_color = Color(0.760417, 0.285435, 0.164361, 1)
+background_energy_multiplier = 2.23
 sky = SubResource("Sky_71nbu")
-ambient_light_energy = 0.01
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.783854, 0.783854, 1)
+ambient_light_energy = 2.44
 fog_enabled = true
-fog_light_color = Color(0.360784, 0.447059, 0.0980392, 1)
-fog_light_energy = 0.01
-fog_sun_scatter = 0.22
-fog_sky_affect = 0.042
-volumetric_fog_density = 0.0704
-volumetric_fog_anisotropy = 0.05
-volumetric_fog_length = 27.94
+fog_light_color = Color(0.361979, 0.361979, 0.361979, 1)
+fog_light_energy = 0.33
+fog_sun_scatter = 0.66
+fog_density = 0.0195
+fog_sky_affect = 0.815
+volumetric_fog_density = 0.1915
+volumetric_fog_anisotropy = -0.9
+volumetric_fog_length = 734.64
 volumetric_fog_detail_spread = 2.27358
 volumetric_fog_sky_affect = 0.4
 
@@ -239,10 +246,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -276.0
-offset_top = -50.0
-offset_right = 143.0
-offset_bottom = 255.0
+offset_left = 72.0
+offset_top = 10.0
+offset_right = 491.0
+offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.32, 1)
@@ -338,7 +345,7 @@ text = "Mute"
 stream = ExtResource("4_se85h")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_aoqqd")
+stream = ExtResource("6_b88la")
 autoplay = true
 
 [node name="HTerrain" type="Node3D" parent="."]
@@ -3260,11 +3267,16 @@ cone = true
 material = SubResource("StandardMaterial3D_6jlqt")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Tower/Node3D"]
-transform = Transform3D(0.91356, 0, 0.406705, 0, 1, 0, -0.406705, 0, 0.91356, -1.4311, 123.628, 1.08884)
+transform = Transform3D(0.300789, 0, 0.953691, 0, 1, 0, -0.953691, 0, 0.300789, -1.4311, 123.628, 1.08885)
 radius = 18.5234
 height = 25.9641
 sides = 6
 material = SubResource("StandardMaterial3D_5aki3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Node3D/CSGCylinder3D3"]
+transform = Transform3D(-0.999957, 0, -0.00912803, 0, 0.999986, 0, 0.00912803, 0, -0.999957, 0.696198, -1.51019, 15.6359)
+size = Vector3(4.90051, 6.56268, 1)
+material = SubResource("StandardMaterial3D_631ht")
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Tower/Node3D"]
 transform = Transform3D(0.95694, 0, 0.290285, 0, 1, 0, -0.290285, 0, 0.95694, -1.4311, 137.309, 1.08884)
@@ -3307,7 +3319,7 @@ cone = true
 material = SubResource("StandardMaterial3D_6jlqt")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Tower/Node3D2"]
-transform = Transform3D(0.913559, 0, 0.406705, 0, 1, 0, -0.406705, 0, 0.913559, 15.9205, 129.925, 15.1399)
+transform = Transform3D(0.0719844, 0, 0.997405, 0, 1, 0, -0.997405, 0, 0.0719844, 15.9205, 129.925, 15.1399)
 radius = 18.5234
 height = 25.9641
 sides = 6
@@ -3363,7 +3375,7 @@ shadow_blur = 5.87
 transform = Transform3D(-0.267238, 0.0839859, 0.959964, 0, 0.996195, -0.0871557, -0.96363, -0.0232914, -0.266221, 124.762, 85.9958, 114.157)
 
 [node name="TruffelturmLogo" type="Sprite2D" parent="."]
-position = Vector2(13, -198)
+position = Vector2(304, -177)
 texture = ExtResource("23_if7s3")
 
 [connection signal="pressed" from="MarginContainer/menu/Play" to="." method="_on_play_pressed"]
