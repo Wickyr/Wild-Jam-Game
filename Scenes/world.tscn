@@ -1,8 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=49 format=3 uid="uid://cfgadybufkebx"]
 
+[ext_resource type="FontFile" uid="uid://u3c7xjl2b56m" path="res://Graphics/UI/Canterbury.ttf" id="2_xmuke"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_xko2i"]
+[ext_resource type="FontFile" uid="uid://uujms4cr30hd" path="res://Graphics/UI/IMMORTAL.ttf" id="4_0vykk"]
 [ext_resource type="AudioStream" uid="uid://neemhyqud4ly" path="res://Audio/Ambience/ForestAmbienceDay.wav" id="4_7t5tp"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="5_58vx7"]
 [ext_resource type="AudioStream" uid="uid://dyil6tot17sgx" path="res://Audio/Player/FS1.wav" id="5_e6wvn"]
@@ -158,19 +160,25 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="PauseMenu/Pause/menu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xmuke")
 theme_override_font_sizes/font_size = 50
 text = "Resume
 "
+flat = true
 
 [node name="Setting" type="Button" parent="PauseMenu/Pause/menu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xmuke")
 theme_override_font_sizes/font_size = 45
 text = "Settings"
+flat = true
 
 [node name="Quit" type="Button" parent="PauseMenu/Pause/menu"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xmuke")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
+flat = true
 
 [node name="settings" type="VBoxContainer" parent="PauseMenu/Pause"]
 visible = false
@@ -179,8 +187,10 @@ script = ExtResource("9_syncu")
 
 [node name="Back" type="Button" parent="PauseMenu/Pause/settings"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xmuke")
 theme_override_font_sizes/font_size = 35
 text = "Back"
+flat = true
 
 [node name="Resolutions" type="OptionButton" parent="PauseMenu/Pause/settings"]
 layout_mode = 2
@@ -201,6 +211,7 @@ offset_left = -58.3333
 offset_top = -4.5
 offset_right = 125.667
 offset_bottom = 18.5
+theme_override_fonts/font = ExtResource("4_0vykk")
 text = "Volume"
 
 [node name="Mute" type="CheckBox" parent="PauseMenu/Pause/settings/Volume"]
@@ -209,6 +220,7 @@ offset_left = -57.5757
 offset_top = 18.5
 offset_right = 126.424
 offset_bottom = 49.5
+theme_override_fonts/font = ExtResource("4_0vykk")
 text = "Mute"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PauseMenu"]
@@ -242,7 +254,7 @@ footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 0.814692, 0, 0, 0, 1, 0, -0.339871, 0)
 volume_db = -15.0
-max_distance = 1.5
+max_distance = 1.0
 
 [node name="Pig" type="Node3D" parent="."]
 transform = Transform3D(-0.333708, 0, 0.942676, 0, 1, 0, -0.942676, 0, -0.333708, 228.185, 0.462426, -16.7976)
