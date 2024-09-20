@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cfgadybufkebx"]
+[gd_scene load_steps=50 format=3 uid="uid://cfgadybufkebx"]
 
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_ledq5"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="3_nqt66"]
@@ -60,11 +60,6 @@ radius = 22.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c8npn"]
 radius = 2.90831
-
-[sub_resource type="Resource" id="Resource_avr48"]
-script = ExtResource("5_58vx7")
-mode = 0
-textures = [[ExtResource("5_lkvfm"), ExtResource("15_ewgyd"), ExtResource("16_go813")], [null, ExtResource("15_ewgyd"), ExtResource("16_go813")]]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72xkf"]
 albedo_color = Color(0.644663, 0.644663, 0.644663, 1)
@@ -234,6 +229,15 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_oeclt")
 material = SubResource("ShaderMaterial_qsoic")
 size = Vector3(1000, 1, 238.555)
 
+[sub_resource type="Resource" id="Resource_avr48"]
+script = ExtResource("5_58vx7")
+mode = 0
+textures = [[ExtResource("5_lkvfm"), ExtResource("15_ewgyd"), ExtResource("16_go813")], [null, ExtResource("15_ewgyd"), ExtResource("16_go813")]]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rdreu"]
+vertices = PackedVector3Array(-199.778, 580.225, 101.118, -93.7779, 580.225, 101.118, -93.5279, 580.225, 98.8678, -199.778, 580.225, -198.382, 102.722, 580.225, 98.8678, 102.972, 580.225, 100.618, 237.222, 580.225, 100.368, 237.222, 580.225, -198.382, -92.7779, 747.975, 99.8678, -92.7779, 747.975, 213.618, 101.972, 747.975, 213.618, 101.972, 747.975, 99.8678, 102.972, 580.225, 201.618, 237.222, 580.225, 201.618, -199.778, 580.225, 201.618, -93.7779, 580.225, 201.618)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 7), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(12, 5, 13), PackedInt32Array(13, 5, 6), PackedInt32Array(15, 14, 1), PackedInt32Array(1, 14, 0)]
+
 [node name="World2" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
@@ -334,7 +338,7 @@ autoplay = true
 [node name="NightAudio" type="AudioStreamPlayer" parent="Env"]
 
 [node name="Player" parent="." instance=ExtResource("3_nqt66")]
-transform = Transform3D(0.170227, 0, 0.985405, 0, 1.22746, 0, -0.985405, 0, 0.170227, 228.676, 0.793373, -18.947)
+transform = Transform3D(0.170227, 0, 0.985405, 0, 1.22746, 0, -0.985405, 0, 0.170227, 228.676, 2.53307, -18.947)
 current_speed = 3.0
 walk_speed = 3.0
 run_speed = 5.0
@@ -346,11 +350,11 @@ volume_db = -15.0
 max_distance = 1.5
 
 [node name="Pig" type="Node3D" parent="."]
-transform = Transform3D(-0.333708, 0, 0.942676, 0, 1, 0, -0.942676, 0, -0.333708, 228.185, -0.0542886, -16.7976)
+transform = Transform3D(-0.333708, 0, 0.942676, 0, 1, 0, -0.942676, 0, -0.333708, 228.185, 0.462426, -16.7976)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Pig" node_paths=PackedStringArray("waypoints")]
 script = ExtResource("7_ehxkd")
-waypoints = [NodePath("../../Marker3D")]
+waypoints = [NodePath("../../NavigationRegion3D/Marker3D")]
 footstep_sounds = Array[AudioStream]([ExtResource("5_e6wvn"), ExtResource("6_c48tw"), ExtResource("7_b1kkw")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pig/CharacterBody3D"]
@@ -394,34 +398,8 @@ max_distance = 30.0
 
 [node name="Dig" type="Timer" parent="Pig"]
 
-[node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("3_ledq5")
-centered = true
-_terrain_data = ExtResource("12_7of0u")
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_avr48")
-render_layers = 1
-cast_shadow = 1
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = null
-shader_params/u_tile_reduction = Vector4(1, 1, 1, 1)
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8497, 0, -22.3385)
-visible = false
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Marker3D"]
-visible = false
-
 [node name="Truffle" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.195, -2.42172, -24.9522)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.195, 0.719347, -24.9522)
 use_collision = true
 size = Vector3(1, 0.471436, 1)
 script = ExtResource("10_j3y87")
@@ -3433,6 +3411,60 @@ mesh = SubResource("BoxMesh_45iaq")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.217871, 0, 0.975978, 0, 1, 0, -0.975978, 0, 0.217871, 305.513, 4.01132, 351.65)
 mesh = SubResource("BoxMesh_45iaq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0422769, 0, 0.999106, 0, 1, 0, -0.999106, 0, 0.0422769, 366.07, 4.01132, 86.1174)
+mesh = SubResource("BoxMesh_45iaq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999814, 0, 0.019285, 0, 1, 0, -0.019285, 0, -0.999814, -53.148, 4.01132, -368.628)
+mesh = SubResource("BoxMesh_45iaq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0358591, 0, -0.999357, 0, 1, 0, 0.999357, 0, -0.0358591, -335.644, 4.01132, -104.26)
+mesh = SubResource("BoxMesh_45iaq")
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("3_ledq5")
+centered = true
+_terrain_data = ExtResource("12_7of0u")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_avr48")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = Vector4(1, 1, 1, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -579.569, 0)
+navigation_mesh = SubResource("NavigationMesh_rdreu")
+travel_cost = 0.0
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60283, 664.229, 156.878)
+visible = false
+use_collision = true
+size = Vector3(195.726, 166.881, 114.668)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7475, 579.225, 1.58815)
+visible = false
+size = Vector3(438.051, 1, 400.941)
+
+[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.259, 580.037, -24.9826)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Marker3D"]
+visible = false
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
