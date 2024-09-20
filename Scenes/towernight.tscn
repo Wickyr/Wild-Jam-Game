@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://twm0x0rutmoa"]
+[gd_scene load_steps=37 format=3 uid="uid://twm0x0rutmoa"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_q5v8v"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_5uvaa"]
@@ -15,8 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://tvubrouxelx8" path="res://Audio/Ambience/Fire.wav" id="13_k4jwq"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="14_6ofyj"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="15_tmxtm"]
-[ext_resource type="Gradient" path="res://Graphics/Textures/Fire.tres" id="16_4a8qr"]
+[ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="16_4a8qr"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="17_8cd8q"]
+[ext_resource type="Script" path="res://Scenes/toguestbedroom.gd" id="18_sfk6j"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 1
@@ -70,14 +71,14 @@ albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("15_tmxtm")
 uv1_scale = Vector3(0.07, 1.01, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2b7ag"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u431o"]
 gradient = ExtResource("16_4a8qr")
 
 [sub_resource type="Curve" id="Curve_e2isa"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.331707, 0.977695), 0.0, 0.0, 0, 0, Vector2(0.785366, 0.197026), 0.0, 0.0, 0, 0, Vector2(1, 0.0334573), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_meqab"]
+[sub_resource type="CurveTexture" id="CurveTexture_16jyg"]
 curve = SubResource("Curve_e2isa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t02oy"]
@@ -96,14 +97,14 @@ linear_accel_min = 0.999998
 linear_accel_max = 4.0
 scale_min = 0.0
 scale_max = 0.0
-scale_curve = SubResource("CurveTexture_meqab")
-color_ramp = SubResource("GradientTexture1D_2b7ag")
+scale_curve = SubResource("CurveTexture_16jyg")
+color_ramp = SubResource("GradientTexture1D_u431o")
 hue_variation_min = -2.23517e-08
 hue_variation_max = -2.23517e-08
 anim_speed_max = 1.0
 anim_offset_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sau7d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr83m"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -115,7 +116,11 @@ particles_anim_v_frames = 5
 particles_anim_loop = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_gl127"]
-material = SubResource("StandardMaterial3D_sau7d")
+material = SubResource("StandardMaterial3D_pr83m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nrcy"]
+albedo_color = Color(0.644663, 0.644663, 0.644663, 1)
+albedo_texture = ExtResource("11_3162i")
 
 [node name="World3" type="Node3D"]
 
@@ -297,9 +302,9 @@ size = Vector3(6.46436, 9.66028, 1)
 material = SubResource("StandardMaterial3D_ytj4s")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="Tower/Walls"]
-transform = Transform3D(0.699177, -0.7149, -0.00838515, 2.98023e-08, -0.0117283, 0.999932, -0.714949, -0.699129, -0.00820017, 1.60135, 17.9823, 3.95399)
+transform = Transform3D(0.699177, -0.7149, -0.00838515, 2.98023e-08, -0.0117283, 0.999932, -0.714949, -0.699129, -0.00820017, 1.41239, 17.9823, 4.14721)
 use_collision = true
-size = Vector3(0.387695, 4.66217, 4.35596)
+size = Vector3(0.928223, 4.66217, 4.35596)
 material = SubResource("StandardMaterial3D_of65c")
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="Tower/Walls"]
@@ -476,8 +481,8 @@ size = Vector3(7.8797, 0.344009, 10.7397)
 material = SubResource("StandardMaterial3D_mu8im")
 
 [node name="CSGBox3D34" type="CSGBox3D" parent="Tower/Stairs"]
-transform = Transform3D(-0.35687, 0, -0.350206, 0, 1.53782, 0, 0.350206, 0, -0.35687, 2.83049, 15.4634, 2.80608)
-size = Vector3(7.46533, 0.483768, 10.2325)
+transform = Transform3D(-0.35687, 0, -0.350206, 0, 1.53782, 0, 0.350206, 0, -0.35687, 2.7225, 15.4634, 2.91206)
+size = Vector3(8.07056, 0.483768, 10.2325)
 material = SubResource("StandardMaterial3D_mu8im")
 
 [node name="CSGBox3D35" type="CSGBox3D" parent="Tower/Stairs"]
@@ -1206,6 +1211,64 @@ trail_lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_t02oy")
 draw_pass_1 = SubResource("QuadMesh_gl127")
 
+[node name="Torch11" type="Node3D" parent="Tower/Torches"]
+transform = Transform3D(-0.509432, 0, 0.860511, 0, 1, 0, -0.860511, 0, -0.509432, 4.62672, 9.78379, 7.21941)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 2.86409, 0.450078)
+size = Vector3(0.0556641, 0.580078, 0.0537109)
+material = SubResource("StandardMaterial3D_geotr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 3.11408, 0.467767)
+size = Vector3(0.151367, 0.153564, 0.132935)
+material = SubResource("StandardMaterial3D_j2i3r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Tower/Torches/Torch11/CSGBox3D6"]
+stream = ExtResource("13_k4jwq")
+autoplay = true
+max_distance = 4.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 2.71398, 0.452332)
+size = Vector3(0.0957031, 0.328674, 0.173927)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.532185)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 2.71152, 0.381864)
+size = Vector3(0.23938, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 2.71152, 0.460967)
+size = Vector3(0.154541, 0.0263672, 0.018116)
+material = SubResource("StandardMaterial3D_cx8rm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower/Torches/Torch11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 3.19655, 0.454493)
+light_color = Color(0.718673, 0.363817, 0.17863, 1)
+shadow_enabled = true
+shadow_opacity = 0.85
+shadow_blur = 9.917
+
+[node name="Fire" type="Node3D" parent="Tower/Torches/Torch11"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Tower/Torches/Torch11/Fire"]
+transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 3.15074, 0.301652)
+amount = 100
+amount_ratio = 0.591
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_t02oy")
+draw_pass_1 = SubResource("QuadMesh_gl127")
+
 [node name="Torch4" type="Node3D" parent="Tower/Torches"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.64701, 0)
 
@@ -1437,6 +1500,13 @@ draw_order = 3
 trail_lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_t02oy")
 draw_pass_1 = SubResource("QuadMesh_gl127")
+
+[node name="Door" type="CSGBox3D" parent="."]
+transform = Transform3D(0.697691, -0.716395, -0.00257459, 0.000758856, 0.00433279, -0.99999, 0.716399, 0.697682, 0.0035666, 4.54527, 12.0166, 4.06343)
+use_collision = true
+size = Vector3(0.162475, 1.4465, 3.07932)
+material = SubResource("StandardMaterial3D_3nrcy")
+script = ExtResource("18_sfk6j")
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
