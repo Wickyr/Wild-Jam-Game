@@ -1,13 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://bs03axsrpxhj6"]
+[gd_scene load_steps=37 format=3 uid="uid://bs03axsrpxhj6"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_d7ogt"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_encdf"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_0s4n4"]
-[ext_resource type="AudioStream" uid="uid://b12sjca4u5iem" path="res://Audio/Events/Creak.wav" id="4_bs8c0"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="5_5jwu7"]
 [ext_resource type="AudioStream" uid="uid://chuoa3dmvo05d" path="res://Audio/Player/TowerFS2.wav" id="6_uf2e5"]
 [ext_resource type="AudioStream" uid="uid://cp2vesbag36p6" path="res://Audio/Player/TowerFS3.wav" id="7_mspmp"]
-[ext_resource type="AudioStream" uid="uid://bstxtaa2bw4p5" path="res://Audio/Player/Heartbeat.wav" id="8_8fijd"]
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="9_twk2i"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="10_ggxpx"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="11_r1624"]
@@ -18,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="15_ogk84"]
 [ext_resource type="Texture2D" uid="uid://chd51g4bqsgvt" path="res://Graphics/Textures/sheets.jpg" id="16_qoxur"]
 [ext_resource type="PackedScene" uid="uid://li7goxlg5nt5" path="res://Assets/Oldlady5.glb" id="18_krxk7"]
-[ext_resource type="AudioStream" uid="uid://cs2htxibk1evf" path="res://Audio/Events/Singing.wav" id="19_l8n6f"]
 
 [sub_resource type="Sky" id="Sky_mfwev"]
 
@@ -242,7 +239,6 @@ shadow_enabled = true
 shadow_blur = 4.885
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Env"]
-stream = ExtResource("4_bs8c0")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("5_5jwu7")]
@@ -250,16 +246,8 @@ transform = Transform3D(-0.581314, 0, -0.813679, 0, 1, 0, 0.813679, 0, -0.581314
 current_speed = 0.0
 walk_speed = 0.0
 run_speed = 0.0
+mouse_sens = 0.04
 footstep_sounds = Array[AudioStream]([ExtResource("6_uf2e5"), ExtResource("7_mspmp")])
-
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
-max_distance = 1.5
-
-[node name="Heartbeat" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("8_8fijd")
-volume_db = -20.0
-autoplay = true
 
 [node name="Room" type="Node" parent="."]
 
@@ -539,7 +527,6 @@ material = SubResource("StandardMaterial3D_8tglr")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Oldlady5"]
 transform = Transform3D(0.571755, 6.72442e-08, 1.49012e-07, 3.55271e-15, 0.675675, -5.84509e-08, 5.96046e-08, 1.06581e-14, 0.571755, 0.0254786, 1.40921, 0.0308313)
-stream = ExtResource("19_l8n6f")
 autoplay = true
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]

@@ -223,7 +223,7 @@ footstep_sounds = Array[AudioStream]([ExtResource("6_hs5w0"), ExtResource("7_p1t
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.563287, 0)
-max_distance = 1.5
+max_distance = 10.5
 
 [node name="Tower" type="Node" parent="."]
 
