@@ -1,9 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://bs03axsrpxhj6"]
+[gd_scene load_steps=40 format=3 uid="uid://bs03axsrpxhj6"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_d7ogt"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_encdf"]
 [ext_resource type="AudioStream" uid="uid://bv1ok8cdly4jg" path="res://Audio/Player/UI.wav" id="3_0s4n4"]
-[ext_resource type="AudioStream" uid="uid://vqxm2nxh6dsc" path="res://Audio/Ambience/TowerAmbience.wav" id="4_yh5ub"]
+[ext_resource type="AudioStream" uid="uid://b12sjca4u5iem" path="res://Audio/Events/Creak.wav" id="4_bs8c0"]
 [ext_resource type="PackedScene" uid="uid://cay0caj5ph44c" path="res://Scenes/player.tscn" id="5_5jwu7"]
 [ext_resource type="AudioStream" uid="uid://chuoa3dmvo05d" path="res://Audio/Player/TowerFS2.wav" id="6_uf2e5"]
 [ext_resource type="AudioStream" uid="uid://cp2vesbag36p6" path="res://Audio/Player/TowerFS3.wav" id="7_mspmp"]
@@ -17,13 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://cs4b2asidi8a2" path="res://Graphics/Textures/brick-wall-background-texture_1048-17010.jpg" id="14_4ug7q"]
 [ext_resource type="Texture2D" uid="uid://bwhh3okgd7pg6" path="res://Graphics/Textures/d83j68z-4a876f53-caf6-4769-8632-636c7cba15cc.jpg" id="15_ogk84"]
 [ext_resource type="Texture2D" uid="uid://chd51g4bqsgvt" path="res://Graphics/Textures/sheets.jpg" id="16_qoxur"]
+[ext_resource type="PackedScene" uid="uid://li7goxlg5nt5" path="res://Assets/Oldlady5.glb" id="18_krxk7"]
+[ext_resource type="AudioStream" uid="uid://cs2htxibk1evf" path="res://Audio/Events/Singing.wav" id="19_l8n6f"]
 
 [sub_resource type="Sky" id="Sky_mfwev"]
 
 [sub_resource type="Environment" id="Environment_gi00v"]
 background_mode = 1
-background_color = Color(0.367237, 0.378038, 0.416745, 1)
-background_energy_multiplier = 0.1
+background_color = Color(0.0963949, 0.536458, 0.110147, 1)
+background_energy_multiplier = 0.08
 sky = SubResource("Sky_mfwev")
 sky_rotation = Vector3(0, 4.47328, 0)
 ambient_light_color = Color(0.557064, 0, 0.116217, 1)
@@ -35,13 +37,15 @@ glow_bloom = 1.0
 fog_enabled = true
 fog_light_color = Color(0.360646, 0.447016, 0.0965644, 1)
 fog_light_energy = 0.01
-fog_density = 0.0685
+fog_density = 0.0
 fog_sky_affect = 0.255
-volumetric_fog_albedo = Color(0.0937264, 0.363352, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1831
+volumetric_fog_albedo = Color(0.363352, 0.0624511, 0, 1)
 volumetric_fog_anisotropy = 0.6
-volumetric_fog_length = 6.0
+volumetric_fog_length = 7.15
 volumetric_fog_detail_spread = 0.965936
-volumetric_fog_sky_affect = 0.344
+volumetric_fog_sky_affect = 0.174
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pehaq"]
 albedo_color = Color(0.644663, 0.644663, 0.644663, 1)
@@ -138,6 +142,13 @@ uv1_scale = Vector3(6.58, -0.11, 1)
 albedo_color = Color(0.344076, 0.344076, 0.344076, 1)
 albedo_texture = ExtResource("10_ggxpx")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tglr"]
+vertex_color_is_srgb = true
+albedo_color = Color(32.374, 5.036, 0.488, 0.464)
+roughness = 0.0
+emission_energy_multiplier = 16.0
+refraction_enabled = true
+
 [node name="World" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
@@ -231,7 +242,7 @@ shadow_enabled = true
 shadow_blur = 4.885
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Env"]
-stream = ExtResource("4_yh5ub")
+stream = ExtResource("4_bs8c0")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("5_5jwu7")]
@@ -253,7 +264,7 @@ autoplay = true
 [node name="Room" type="Node" parent="."]
 
 [node name="Door" type="CSGBox3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 6.54042, 48.3782, 7.46432)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 6.65465, 48.3924, 7.46104)
 use_collision = true
 size = Vector3(0.162475, 1.4465, 3.07932)
 material = SubResource("StandardMaterial3D_pehaq")
@@ -284,55 +295,55 @@ material = SubResource("StandardMaterial3D_255er")
 
 [node name="Torches" type="Node" parent="Room"]
 
-[node name="Torch" type="Node3D" parent="Room/Torches"]
-transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 7.83703, -0.262141, 11.6043)
+[node name="Torch2" type="Node3D" parent="Room/Torches"]
+transform = Transform3D(0.721784, 0, -0.692118, 0, 1, 0, 0.692118, 0, 0.721784, 6.31098, -0.262141, 4.6059)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.64086, 49.292, 0.450078)
 size = Vector3(0.0556641, 0.580078, 0.0537109)
 material = SubResource("StandardMaterial3D_geotr")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(0.94985, 0.311358, -0.0290033, -0.311489, 0.95025, 5.55112e-17, 0.0275604, 0.00903422, 0.999579, 2.7434, 49.542, 0.467767)
 size = Vector3(0.151367, 0.153564, 0.132935)
 material = SubResource("StandardMaterial3D_j2i3r")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Torches/Torch/CSGBox3D6"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Torches/Torch2/CSGBox3D6"]
 stream = ExtResource("12_nqn4i")
 autoplay = true
 max_distance = 5.0
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.53999, 49.1419, 0.452332)
 size = Vector3(0.0957031, 0.328674, 0.173927)
 material = SubResource("StandardMaterial3D_cx8rm")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 49.1394, 0.532185)
 size = Vector3(0.23938, 0.0263672, 0.018116)
 material = SubResource("StandardMaterial3D_cx8rm")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(0.9993, 0.0250394, -0.027779, -0.0252799, 0.999646, -0.0083378, 0.0275604, 0.00903422, 0.999579, 2.60962, 49.1394, 0.381864)
 size = Vector3(0.23938, 0.0263672, 0.018116)
 material = SubResource("StandardMaterial3D_cx8rm")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Room/Torches/Torch"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(-0.0834041, -0.0104204, -0.996461, -0.0252799, 0.999646, -0.0083378, 0.996195, 0.024495, -0.083638, 2.69562, 49.1394, 0.460967)
 size = Vector3(0.154541, 0.0263672, 0.018116)
 material = SubResource("StandardMaterial3D_cx8rm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Room/Torches/Torch"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Room/Torches/Torch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80956, 49.6244, 0.454493)
-light_color = Color(0.718673, 0.363817, 0.17863, 1)
-light_energy = 7.93
+light_color = Color(0.718673, 0.27145, 0.17863, 1)
+light_energy = 0.695
 shadow_enabled = true
 shadow_opacity = 0.85
 shadow_blur = 9.917
 
-[node name="Fire" type="Node3D" parent="Room/Torches/Torch"]
+[node name="Fire" type="Node3D" parent="Room/Torches/Torch2"]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Room/Torches/Torch/Fire"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Room/Torches/Torch2/Fire"]
 transform = Transform3D(1, 0, 0, 0, 0.471087, 0, 0, 0, 1, 2.50319, 49.5786, 0.301652)
 amount = 100
 amount_ratio = 0.591
@@ -497,6 +508,38 @@ material = SubResource("StandardMaterial3D_k2vg8")
 transform = Transform3D(0.607445, 0, 0, 0, 0.433482, 0, 0, 0, 0.188132, 4.23776, 47.472, 2.9125)
 size = Vector3(0.156731, 2.65475, 0.123352)
 material = SubResource("StandardMaterial3D_k2vg8")
+
+[node name="Oldlady5" parent="Room" instance=ExtResource("18_krxk7")]
+transform = Transform3D(-1.11412, -2.69288e-07, -1.34823, -8.9407e-08, 1.48, -3.57628e-07, 1.34823, -3.50188e-07, -1.11413, 7.25475, 46.9339, 7.73566)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/Oldlady5"]
+transform = Transform3D(0.704082, -1.13687e-13, -1.19209e-07, -1.84741e-13, 1.18273, 5.68434e-14, 8.9407e-08, 3.41061e-13, 1.21094, -0.0168898, 1.52088, 0.0913916)
+transparency = 0.98
+size = Vector3(0.0162993, 0.0057373, 0.0783691)
+material = SubResource("StandardMaterial3D_8tglr")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/Oldlady5"]
+transform = Transform3D(0.704082, -1.13687e-13, -1.19209e-07, -1.84741e-13, 1.18273, 5.68434e-14, 8.9407e-08, 3.41061e-13, 1.21094, -0.0166421, 1.52012, 0.0899572)
+transparency = 0.98
+size = Vector3(0.012178, 0.00958252, 0.0783691)
+material = SubResource("StandardMaterial3D_8tglr")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/Oldlady5"]
+transform = Transform3D(0.704082, -1.13687e-13, -1.19209e-07, -2.06057e-13, 1.18273, 2.84217e-14, 1.19209e-07, 3.41061e-13, 1.21094, 0.0310736, 1.5231, 0.0944529)
+transparency = 0.98
+size = Vector3(0.0162993, 0.0057373, 0.0783691)
+material = SubResource("StandardMaterial3D_8tglr")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Room/Oldlady5"]
+transform = Transform3D(0.704082, -1.13687e-13, -1.19209e-07, -2.06057e-13, 1.18273, 2.84217e-14, 1.19209e-07, 3.41061e-13, 1.21094, 0.0313213, 1.52234, 0.0930185)
+transparency = 0.98
+size = Vector3(0.012178, 0.00958252, 0.0783691)
+material = SubResource("StandardMaterial3D_8tglr")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Oldlady5"]
+transform = Transform3D(0.571755, 6.72442e-08, 1.49012e-07, 3.55271e-15, 0.675675, -5.84509e-08, 5.96046e-08, 1.06581e-14, 0.571755, 0.0254786, 1.40921, 0.0308313)
+stream = ExtResource("19_l8n6f")
+autoplay = true
 
 [connection signal="pressed" from="PauseMenu/Pause/menu/Resume" to="PauseMenu/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/Pause/menu/Setting" to="PauseMenu/Pause" method="_on_setting_pressed"]
