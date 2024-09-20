@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bs03axsrpxhj6"]
+[gd_scene load_steps=37 format=3 uid="uid://dvl5vabkm1wel"]
 
 [ext_resource type="Script" path="res://Scripts/UI/pause.gd" id="1_d7ogt"]
 [ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="2_encdf"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b0whblxqdxt5o" path="res://Graphics/Textures/wood.jpg" id="9_twk2i"]
 [ext_resource type="Texture2D" uid="uid://cn02bie0otk3" path="res://Graphics/Textures/torch.jpg" id="10_ggxpx"]
 [ext_resource type="Texture2D" uid="uid://d1x6q2ugwx3xs" path="res://Graphics/Textures/iron.jpg" id="11_r1624"]
-[ext_resource type="Gradient" uid="uid://bvr66o84uh38g" path="res://Graphics/Textures/Fire.tres" id="12_kd5t0"]
+[ext_resource type="Gradient" path="res://Graphics/Textures/Fire.tres" id="12_kd5t0"]
 [ext_resource type="AudioStream" uid="uid://tvubrouxelx8" path="res://Audio/Ambience/Fire.wav" id="12_nqn4i"]
 [ext_resource type="Texture2D" uid="uid://cxbbs0wq6gwyi" path="res://Graphics/Textures/frames.png" id="13_lk2uj"]
 [ext_resource type="Texture2D" uid="uid://cs4b2asidi8a2" path="res://Graphics/Textures/brick-wall-background-texture_1048-17010.jpg" id="14_4ug7q"]
@@ -138,7 +138,7 @@ uv1_scale = Vector3(6.58, -0.11, 1)
 albedo_color = Color(0.344076, 0.344076, 0.344076, 1)
 albedo_texture = ExtResource("10_ggxpx")
 
-[node name="World" type="Node3D"]
+[node name="World2" type="Node3D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
