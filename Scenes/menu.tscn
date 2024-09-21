@@ -1821,7 +1821,7 @@ environment = SubResource("Environment_8taen")
 transform = Transform3D(0.0102621, 0.0948682, 0.995437, -7.95221e-05, 0.995489, -0.0948724, -0.999947, 0.000894423, 0.0102233, 124.762, 85.9958, 114.157)
 
 [node name="TruffelturmLogo" type="Sprite2D" parent="."]
-position = Vector2(304, -177)
+position = Vector2(269, -180)
 texture = ExtResource("23_if7s3")
 
 [connection signal="pressed" from="MarginContainer/menu/Play" to="." method="_on_play_pressed"]

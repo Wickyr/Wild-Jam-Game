@@ -36,22 +36,21 @@ sun_curve = 0.689219
 sky_material = SubResource("ProceduralSkyMaterial_u8re0")
 
 [sub_resource type="Environment" id="Environment_84tyi"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.760784, 0.286275, 0.164706, 1)
+background_energy_multiplier = 2.23
 sky = SubResource("Sky_vogx5")
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.784314, 0.784314, 1)
 ambient_light_sky_contribution = 0.0
+ambient_light_energy = 2.24
 fog_enabled = true
-fog_light_color = Color(0.470266, 0.30782, 0.164342, 1)
-fog_light_energy = 1.68
-fog_sun_scatter = 0.22
-fog_density = 0.02
-fog_sky_affect = 0.0
+fog_light_color = Color(0.360784, 0.360784, 0.360784, 1)
+fog_light_energy = 0.33
+fog_sun_scatter = 0.66
+fog_density = 0.0195
+fog_sky_affect = 0.815
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0986
-volumetric_fog_anisotropy = 0.5
-volumetric_fog_length = 12.21
-volumetric_fog_detail_spread = 2.27358
-volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_065pp"]
 
@@ -235,6 +234,7 @@ environment = SubResource("Environment_84tyi")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0, 0)
 light_color = Color(0.994008, 0.955328, 0.725164, 1)
+light_energy = 3.541
 shadow_enabled = true
 shadow_blur = 5.87
 
